@@ -1,0 +1,72 @@
+<div class="body">
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12">
+          <div
+            class="card card-registration card-registration-2"
+            style="border-radius: 15px"
+          >
+            <div class="card-body p-0">
+              <div class="row g-0 d-flex flex-column align-items-center">
+                <div class="col-lg-8">
+                  <div class="p-5">
+                    <div
+                      class="d-flex justify-content-between align-items-center mb-5"
+                    >
+                      <h1 class="fw-bold mb-0 text-black">Your Orders</h1>
+                    </div>
+                    <hr class="my-4" />
+                  
+                    <table
+                      class="table container"
+                      *ngIf="getOrders().length>0; else noItemsBlock"
+                    >
+                      <thead>
+                        
+                        <tr>
+                          <th>TimeStamp</th>
+                          <th>Products</th>
+                          <th>Price</th>
+                          <hr class="my-4" />
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let order of getOrders()">
+                          <td>{{order.timestamp}}</td>
+                          <td>
+                            <ng-container *ngFor="let product of order.products; let last = last">
+                              {{ product.title }}
+                              <ng-container *ngIf="!last">, </ng-container>
+                            </ng-container>
+                          </td>
+                          <td>{{ order.total }}</td>
+                          <hr class="my-4" />
+                        </tr>
+                        
+                      </tbody>
+                    </table>
+  
+                    <ng-template #noItemsBlock>
+                      <div
+                        class="container d-flex align-items-start p-4 justify-content-center vh-100"
+                      >
+                        <div
+                          class="text-center p-4 border border-primary rounded w-25"
+                        >
+                          <p>No Orders Found</p>
+                          <button class="btn btn-primary" routerLink="/cart" routerLinkActive="active">Go To Cart</button>
+                        </div>
+                      </div>
+                    </ng-template>
+  
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

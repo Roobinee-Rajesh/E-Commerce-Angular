@@ -1,0 +1,85 @@
+<div class="body">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12">
+        <div
+          class="card card-registration card-registration-2"
+          style="border-radius: 15px"
+        >
+          <div class="card-body p-0">
+            <div class="row g-0 d-flex flex-column align-items-center">
+              <div class="col-lg-8">
+                <div class="p-5">
+                  <div
+                    class="d-flex justify-content-between align-items-center mb-5"
+                  >
+                    <h1 class="fw-bold mb-0 text-black">Your Shopping Cart</h1>
+                  </div>
+                  <hr class="my-4" />
+
+                  <table
+                    class="table container"
+                    *ngIf="cartComponent.length > 0; else noItemsBlock"
+                  >
+                    <thead>
+                      <tr>
+                        <th>Image</th>
+                        <th>Title</th>
+                        <th>Count</th>
+                        <th>Price</th>
+                        <hr class="my-4" />
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let product of cartComponent">
+                        <td>
+                          <img
+                            [src]="product.image"
+                            alt="Product Image"
+                            width="50"
+                            height="50"
+                          />
+                        </td>
+                        <td>{{ product.title }}</td>
+                        <td>{{ product.count }}</td>
+                        <td>₹{{ product.price * product.count !}}</td>
+                        <hr class="my-4" />
+                      </tr>
+                    </tbody>
+                    <p><strong>Total-</strong>₹{{ cartTotal  }}</p>
+                    <button
+                      class="btn btn-primary"
+                      routerLink="/orders"
+                      (click)="checkOut()"
+                    >
+                      Check Out
+                    </button>
+                  </table>
+
+                  <ng-template #noItemsBlock>
+                    <div
+                      class="container d-flex align-items-start p-4 justify-content-center vh-100"
+                    >
+                      <div
+                        class="text-center p-4 border border-primary rounded w-25"
+                      >
+                        <p>No Items</p>
+                        <button
+                          class="btn btn-primary"
+                          routerLink="/home"
+                          routerLinkActive="active"
+                        >
+                          Go Home
+                        </button>
+                      </div>
+                    </div>
+                  </ng-template>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
